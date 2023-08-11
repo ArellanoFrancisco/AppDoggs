@@ -17,11 +17,14 @@ interface DogsDao {
 
     @Query("SELECT * FROM breed_table ORDER BY breed ASC")
     fun getAllBreedList(): LiveData<List<Razas>>
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAllImagesList(dogsImages: List<DogsImages>)
 
     @Update
     suspend fun updateFavImages(dogsImages: DogsImages)
+
+    @Query("UPDATE images_table SET fav = 0 WHERE fav = 1")
+    suspend fun deleteFavImages()
 
     @Query("SELECT * FROM images_table WHERE breed = :breed")
     fun getAllDoggiesImages(breed : String): LiveData<List<DogsImages>>

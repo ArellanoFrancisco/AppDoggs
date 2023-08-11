@@ -51,7 +51,12 @@ class DogRepository(private val dogsDao: DogsDao) {
     }
 
     suspend fun updateFavImages(dogsImages: DogsImages) {
+        Log.d("updateFav", " updatefav")
         dogsDao.updateFavImages(dogsImages)
+    }
+    suspend fun deleteFavImages() {
+        Log.d("deleteFav", " updatefav")
+        dogsDao.deleteFavImages()
     }
 
 }

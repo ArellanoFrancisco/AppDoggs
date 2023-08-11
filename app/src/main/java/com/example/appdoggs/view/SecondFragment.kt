@@ -1,6 +1,7 @@
 package com.example.appdoggs.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -46,9 +47,11 @@ class SecondFragment : Fragment() {
                 if(it.fav) {
                     it.fav = false
                     viewModel.updateFav(it)
+                    Log.d("Fav", " no es fav")
                     Toast.makeText(context, R.string.NoesFav, Toast.LENGTH_LONG).show()
                 } else {
                     it.fav = true
+                    Log.d("Fav", " es fav")
                     viewModel.updateFav(it)
                     Toast.makeText(context, R.string.esFav, Toast.LENGTH_LONG).show()
                 }

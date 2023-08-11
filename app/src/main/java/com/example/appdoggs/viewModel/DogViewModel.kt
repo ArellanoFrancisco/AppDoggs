@@ -1,6 +1,7 @@
 package com.example.appdoggs.viewModel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -38,7 +39,13 @@ class DogViewModel(application: Application): AndroidViewModel(application) {
 
 
     fun updateFav(dogsImages: DogsImages) = viewModelScope.launch {
+        Log.d("repoFav", " repo fav")
         repository.updateFavImages(dogsImages)
     }
-
+    fun deleteallFav() {
+        viewModelScope.launch {
+            Log.d("repoFav", " repo fav")
+            repository.deleteFavImages()
+        }
+    }
 }
