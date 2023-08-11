@@ -7,12 +7,14 @@ import com.example.appdoggs.model.remote.FromInternet.IRazas
 
 
     fun fromInternetToBreedEntity(iRazas: IRazas): List<Razas> {
+        val breedNames = iRazas.message.keys
+        return breedNames.map{breedNames->
 
-        return iRazas.message.map{
-            Razas(breed = it) }
+            Razas(breed = breedNames) }
     }
 
     fun fromInternetToImagesEntity(iImages: IImages, breed: String): List<DogsImages> {
-        return iImages.message.map {
-            DogsImages(imageUrl = it, breed = breed) }
+        val imageName= iImages.message
+        return imageName.map {imageName ->
+            DogsImages(imageUrl = imageName, breed = breed) }
     }

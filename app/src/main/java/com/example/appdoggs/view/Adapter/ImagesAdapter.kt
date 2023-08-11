@@ -4,10 +4,12 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.appdoggs.R
 import com.example.appdoggs.databinding.ImageItemBinding
 import com.example.appdoggs.model.local.Entities.DogsImages
 
@@ -29,16 +31,19 @@ class ImagesAdapter : RecyclerView.Adapter<ImagesAdapter.ImageDogVH>() {
         fun bind(image: DogsImages) {
             Glide.with(binding.root).load(image.imageUrl).into(binding.ivDog)
             if (image.fav) {
+                binding.ivFab.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.baseline_favorite_24))
                 binding.ivFab.setColorFilter(Color.RED)
                 binding.ivFab.visibility = View.VISIBLE
             } else {
-                binding.ivFab.visibility = View.GONE
+                binding.ivFab.setImageDrawable(ContextCompat.getDrawable(itemView.context, R.drawable.twotone_favorite_24))
+                binding.ivFab.setColorFilter(Color.GRAY)
+                binding.ivFab.visibility = View.VISIBLE
             }
             itemView.setOnLongClickListener(this)
         }
 
         override fun onLongClick(v: View?): Boolean {
-            selectedImage.value = listImages[adapterPosition]
+            selectedImage.value = listImages[bindingAdapterPosition]
             return true
         }
 

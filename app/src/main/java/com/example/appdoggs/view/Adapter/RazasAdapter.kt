@@ -30,7 +30,7 @@ class RazasAdapter : RecyclerView.Adapter<RazasAdapter.RazasDogVH>() {
         }
 
         override fun onClick(v: View?) {
-            selectedBreed.value = listBreed[adapterPosition]
+            selectedBreed.value = listBreed[bindingAdapterPosition]
         }
     }
 

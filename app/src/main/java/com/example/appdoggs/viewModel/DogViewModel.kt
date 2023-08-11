@@ -16,9 +16,8 @@ class DogViewModel(application: Application): AndroidViewModel(application) {
 
     init {
         val db = DogsDatabase.getDatabase(application)
-        val breedDao = db.breedDao()
-        val imageDao = db.imagesDao()
-        repository = DogRepository(imageDao ,breedDao)
+        val dogsDao = db.dogsDao()
+        repository = DogRepository(dogsDao)
 
         viewModelScope.launch {
             repository.fetchBreed()
@@ -27,7 +26,6 @@ class DogViewModel(application: Application): AndroidViewModel(application) {
 
     //Todas las razas de perro desde la DataBase
     fun getBreedList(): LiveData<List<Razas>> = repository.breedListLivedata
-
     // Para las images
     private var breedSelected : String = ""
 
