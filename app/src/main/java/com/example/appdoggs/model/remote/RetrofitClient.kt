@@ -8,6 +8,7 @@ class RetrofitClient {
 
         private const val BASE_URL = "https://dog.ceo/api/"
 
+        lateinit var  retrofitInstance : Retrofit
         fun retrofitInstance(): DogsApi{
             val retrofit = Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(
                 GsonConverterFactory.create()).build()
